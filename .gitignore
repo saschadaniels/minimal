@@ -3,3 +3,4 @@ chroot/*
 cache/*
 .stage/*
 binary/*
+binary.packages

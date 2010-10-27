@@ -1,0 +1,19 @@
+Minimales Debian Live System bauen
+
+
+Basis System ist squeeze.
+
+Benötigte Pakete:
+
+live-build 
+live-config
+live-config-sysvinit
+live-helper  
+
+Zu installierende Pakete werden in
+
+config/chroot_local-packageslists/*.list
+
+gepflegt
+
+             

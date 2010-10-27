@@ -2,3 +2,4 @@
 chroot/*
 cache/*
 .stage/*
+binary/*

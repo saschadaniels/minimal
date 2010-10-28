@@ -14,7 +14,7 @@ LB_BINARY_INDICES="true"
 
 # $LB_BOOTAPPEND_LIVE: set boot parameters
 # (Default: empty)
-LB_BOOTAPPEND_LIVE="live-config.locales=de live-config.keyb=de"
+LB_BOOTAPPEND_LIVE="live-config.locales=de live-config.keyboard-layouts=de"
 
 # $LB_BOOTAPPEND_INSTALL: set boot parameters
 # (Default: empty)

@@ -16,4 +16,24 @@ config/chroot_local-packageslists/*.list
 
 gepflegt
 
-             
+Was wurde verändert:
+
+<sshd>
+
+Kein root Login
+Login nur mit Key
+
+</sshd>
+
+cron
+
+crontabs nur für root
+
+</cron>
+
+<shorewall>
+
+Alles darf raus
+ausser ssh darf nix rein
+
+</shorewall>             

@@ -30,7 +30,7 @@ LB_KEYRING_PACKAGES="debian-archive-keyring"
 
 # $LB_LANGUAGE: set language to use
 # (Default: empty)
-LB_LANGUAGE="en"
+LB_LANGUAGE="de"
 
 # $LB_LINUX_FLAVOURS: set kernel flavour to use
 # (Default: autodetected)

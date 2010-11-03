@@ -21,4 +21,3 @@ Ping(DROP)	net		$FW
 # Permit all ICMP traffic FROM the firewall TO the net zone
 
 ACCEPT		$FW		net		icmp
-ACCEPT		net		$FW		tcp	22	

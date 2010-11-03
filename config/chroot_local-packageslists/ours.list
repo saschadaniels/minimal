@@ -3,5 +3,4 @@ harden-remoteaudit
 console-setup 
 console-common kbd
 locales
-ssh
 shorewall

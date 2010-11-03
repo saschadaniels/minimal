@@ -1,3 +1,5 @@
+config/chroot_local-includes/var/lib/openvas/plugins/*
+config/chroot_local-includes/var/cache/openvas/*
 *.iso
 chroot/*
 cache/*

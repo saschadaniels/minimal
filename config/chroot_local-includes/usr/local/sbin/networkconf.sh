@@ -1,9 +1,9 @@
 #!/bin/sh
 
 	
-MY_INTERFACES="/tmp/interfaces";
-MY_RESOLV_CONF="/tmp/resolv.conf";
-
+MY_INTERFACES="/etc/network/interfaces";
+MY_RESOLV_CONF="/etc/resolv.conf";
+MY_DHCP=off;
 MY_ERROR() {
 	echo "$1\n";
 	echo "Wir fangen nochmal von vorne an.\n";
@@ -30,8 +30,7 @@ MY_GET_CHOICE() {
 	
 	case $n in 
 		d|D)
-			echo "Behalte default Einstellungen (dhcp).\n";
-			exit 0;
+			MY_DHCP=on;
 		;;
 		s|S)
 			MY_READ_SETTINGS;
@@ -45,11 +44,19 @@ MY_GET_CHOICE() {
 
 MY_WRITE_INTERFACES() {
 	echo "$MY_INTERFACES wird geschrieben\n";
-	echo "auto lo\niface lo inet loopback" > $MY_INTERFACES;
-	echo "auto eth0\niface eth0 inet static\n" >> $MY_INTERFACES;
-	echo "address $MYIP\nnetmask $MY_NETMASK\n" >> $MY_INTERFACES;
-	test $(expr length "$MY_GATEWAY") -gt 6 && \
-	echo "gateway $MY_GATEWAY" >> $MY_INTERFACES;
+	case $MY_DHCP in
+		on)
+			echo "auto lo\niface lo inet loopback" > $MY_INTERFACES;
+			echo "auto eth0\niface eth0 inet dhcp\n" >> $MY_INTERFACES;
+		;;
+		*)
+			echo "auto lo\niface lo inet loopback" > $MY_INTERFACES;
+			echo "auto eth0\niface eth0 inet static\n" >> $MY_INTERFACES;
+			echo "address $MYIP\nnetmask $MY_NETMASK\n" >> $MY_INTERFACES;
+			test $(expr length "$MY_GATEWAY") -gt 6 && \
+			echo "gateway $MY_GATEWAY" >> $MY_INTERFACES;
+		;;
+	esac
 }
 
 MY_RESOLV() {
@@ -74,5 +81,6 @@ MY_NETWORK_START() {
 MY_GET_CHOICE;
 MY_NETWORK_STOP;
 MY_WRITE_INTERFACES;
-MY_RESOLV
-MY_NETWORK_START
+MY_RESOLV;
+MY_NETWORK_START;
+

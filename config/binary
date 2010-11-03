@@ -154,5 +154,5 @@ LB_SYSLINUX_MENU_LIVE_FAILSAFE_ENTRY=""
 LB_SYSLINUX_MENU_MEMTEST_ENTRY="Memory test"
 
 # $LB_USERNAME: set username
-# (Default: pbx)
-LB_USERNAME="pbx"
+# (Default: pentest)
+LB_USERNAME="pentest"

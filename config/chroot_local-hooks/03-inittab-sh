@@ -1,0 +1,2 @@
+#!/bin/sh
+sed -i 's/^\([2-6]\)/#\1/' /etc/inittab 

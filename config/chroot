@@ -49,8 +49,8 @@ LB_REPOSITORIES=""
 LB_PACKAGES=""
 
 # $LB_PACKAGES_LISTS: set package list to install
-# (Default: minimal)
-LB_PACKAGES_LISTS="minimal"
+# (Default: standard)
+LB_PACKAGES_LISTS="standard"
 
 # $LB_TASKS: set tasks to install
 # (Default: empty)

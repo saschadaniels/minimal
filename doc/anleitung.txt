@@ -79,7 +79,7 @@ Danach erscheint eine Eingabeaufforderung bei der die IP-Adresse
 des zu scannenden Hosts einzugeben ist.
 
 Nun laufen die Scans, die auch wieder etliche Minuten dauern. Das
-Ergebnis wird im test-basierten w3m-Browser angezeigt, wo Sie mit
+Ergebnis wird im text-basierten w3m-Browser angezeigt, wo Sie mit
 den Pfeiltasten scrollen können. Bitte lesen Sie die angezeigten
 Informationen sorgfältig durch.
 

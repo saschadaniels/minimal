@@ -1,0 +1,89 @@
+Das Penetrationstest-System ("Pen-Test")
+====================================================================
+
+Zum Zwecke eines Pen-Tests wurde ein Live-System basierend auf dem
+bekannten Debian Live (http://live.debian.net/) gebaut, damit sich
+der Penetrationstest einfach und ohne weitere Installation auf
+einem Rechner einsetzen läßt.
+
+Auf dem Image ist OpenVAS (Open Vulnerability Assessment System /
+Scanner, http://de.wikipedia.org/wiki/OpenVAS) vorinstalliert.
+Es handelt sich dabei um eine freie Abspaltung des inzwischen
+proprietären Vulnerability Scanners Nessus
+(http://de.wikipedia.org/wiki/Nessus_%28Software%29).
+
+Das Pen-Test-Live-System ist – abgesehen von einer vorinstallierten,
+mit Shorewall restriktiv konfigurierten Firewall – aus folgenden
+Gründen nicht speziell gehärtet:
+- Ein Angriff auf das Pen-Test-System lohnt nicht.
+- Ein Angreifer könnte auf dem System nichts verändern da sich das
+  System in einem nicht-schreibbaren Image befindet.
+- Zum Booten des Systems benötigt man physischen Zugang zu einem
+  Rechner im betreffenden Netz. Jemand mit physischen Zugang könnte
+  statt des Pen-Test-Systems ebensogut ein eigenes System booten.
+
+Bei der Image-Datei handelt es sich um ein boot-fähiges Hybrid-ISO-
+Image für Rechner mit i368-Architektur, das mit Standard-Tools auf
+eine CD gebrannt oder alternativ per dd auf einen USB-Speicher-Stick
+kopiert werden kann.
+
+Bitte beachten Sie daß zum Booten des Rechners von dem Medium
+möglicherweise entsprechende Einstellungen im BIOS vorgenommen
+werden müssen. Bitte lesen Sie dazu falls erforderlich die
+Dokumentation Ihres BIOS'.
+
+Natürlich kann das ISO-Image auch als CD-Image für ein virtuelles
+System (VMWare, Qemu, Virtual Box o.ä.) verwendet werden, jedoch
+ist ein emuliertes System (Qemu) vergleichsweise langsam.
+
+Der Rechner sollte über mindestens 1 GiB RAM und einen normalen
+100-MBit/s-Ethernet-Anschluß verfügen.
+
+Wie bei einem Live-System üblich müssen Sie im Boot-Menü mittels
+eines Boot-Parameters (wie angezeigt: Tab zum Bearbeiten) Ihre
+Tastatur-Belegung einstellen. Sollten Sie ein deutsches Tastatur-
+Layout an einer normalen IBM-PC-kompatiblen Tastatur wünschen
+(live-config.keyboard-layouts=de) so müssen Sie jedoch nicht
+erst bearbeiten sondern können direkt Enter drücken, denn dieses
+ist bereits voreingestellt.
+
+Nach dem Hochfahren des Systems werden automatisch noch ein paar
+Fragen gestellt. Sie können aber jederzeit gefahrlos den Rechner
+ausschalten oder resetten und von vorne beginnen, denn dieses
+Pen-Test-Live-System schreibt ja keine Daten auf Ihre Festplatte,
+somit besteht nicht der Gefahr von Datenkorrumpierung.
+
+Zuerst werden Sie gefragt ob das Netzwerk-Interface per DHCP
+konfiguriert werden soll. Für den Fall daß Sie in Ihrem Netz
+keinen DHCP-Server haben können Sie auch manuell eine IP-Adresse,
+Netzmaske etc. eingeben.
+
+Danach werden Sie gefragt ob aus dem Internet die neusten
+Aktualisierungen der Test-Plugins für OpenVAS – sogenannte NVTs
+(Network Vulnerability Tests) – vom signierten OpenVAS NVT Feed
+Service nachgeladen werden sollen (mittels des Skriptes
+openvas-nvt-sync).
+
+Dann wird OpenVAS gestartet. Dieser Vorgang kann je nach Leistung
+des Rechners durchaus 15 Minuten dauern, da über 19000 NVTs in den
+Cache geladen werden.
+
+Möglicherweise erhalten Sie dabei die Meldung "W32.Sasser.Worm.nasl
+could not be added to the cache", die Sie getrost ignorieren können
+da dieser Test durch einen neueren ersetzt wurde. Außerdem wäre der
+Test eh nicht relevant, da das zu scannende TK-Anlagen-System ja
+auf Linux basiert, also der Windows-Wurm W32.Sasser darauf nicht
+vorhanden sein kann.
+
+Danach erscheint eine Eingabeaufforderung bei der die IP-Adresse
+des zu scannenden Hosts einzugeben ist.
+
+Nun laufen die Scans, die auch wieder etliche Minuten dauern. Das
+Ergebnis wird im text-basierten w3m-Browser angezeigt, wo Sie mit
+den Pfeiltasten scrollen können. Bitte lesen Sie die angezeigten
+Informationen sorgfältig durch.
+
+Nach dem Beenden mit q haben erscheint eine Eingabeaufforderung
+bei der Sie ggf. einen erneuten Scan-Vorgang durchführen können.
+
+
